@@ -1,0 +1,98 @@
+[tool.black]
+line-length = 240
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "proxyv"
+version = "1.0.0"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+]
+
+[project.optional-dependencies]
+standalone = [
+    "shortuuid",
+    "httpx==0.24.0",
+    "einops",
+    "ftfy",
+]
+
+
+train = [
+    "proxyv[standalone]",
+    "numpy==1.26.4",
+    "open_clip_torch",
+    "fastapi",
+    "markdown2[all]",
+    "requests",
+    "sentencepiece",
+    "torch==2.1.2",
+    "torchvision==0.16.2",
+    "uvicorn==0.32.0",
+    "wandb",
+    "deepspeed==0.14.2",
+    "peft==0.4.0",
+    "accelerate==0.34.2",
+    "tokenizers==0.19.1",
+    "transformers==4.41.2",
+    "bitsandbytes==0.41.0",
+    "scikit-learn==1.2.2",
+    "sentencepiece~=0.1.99",
+    "einops==0.6.1",
+    "einops-exts==0.0.4",
+    "gradio_client==0.2.9",
+    "urllib3<=2.0.0",
+    "datasets==2.16.1",
+    "pydantic==2.10.6",
+    "timm",
+    "triton==2.1.0",
+    "hf_transfer",
+    "opencv-python",
+    "av",
+    "decord",
+    "tyro",
+    "scipy",
+]
+
+[tool.setuptools.packages.find]
+include = ["llava*"]
+exclude = [
+    "assets*",
+    "benchmark*",
+    "docs",
+    "dist*",
+    "playground*",
+    "scripts*",
+    "train_scripts",
+    "tests*",
+    "checkpoints*",
+    "project_checkpoints*",
+    "debug_checkpoints*",
+    "mlx_configs*",
+    "wandb*",
+    "notebooks*",
+]
+
+[tool.wheel]
+exclude = [
+    "assets*",
+    "benchmark*",
+    "docs",
+    "dist*",
+    "playground*",
+    "scripts*",
+    "train_scripts",
+    "tests*",
+    "checkpoints*",
+    "project_checkpoints*",
+    "debug_checkpoints*",
+    "mlx_configs*",
+    "wandb*",
+    "notebooks*",
+]
