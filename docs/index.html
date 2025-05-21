@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="ProxyV: Streamline Without Sacrifice - Squeeze out Computation Redundancy in LMM">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ProxyV: Streamline Without Sacrifice - Squeeze out Computation Redundancy in LMM</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+
+
+
+<section class="hero" style="margin-top: 1rem;">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Streamline Without Sacrifice - Squeeze out Computation Redundancy in LMM</h1>
+          <!-- <h2 class="title is-2 publication-title"><span style="color: rgba(250, 66, 66, 0.988);">CVPR</span> 2025</h2> -->
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://penghao-wu.github.io/">Penghao Wu</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com.tw/citations?user=zdgKJXIAAAAJ&hl">Lewei Lu</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://liuziwei7.github.io//">Ziwei Liu</a><sup>1</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>S-Lab, Nanyang Technological University,</span>
+            <span class="author-block"><sup>2</sup>SenseTime Research</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/TODO"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- <span class="link-block">
+                <a href="https://arxiv.org/pdf/2406.12275v2"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/penghao-wu/ProxyV"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <!-- <span>Code</span> -->
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <p style="font-size:18px">🤗</p>
+                  </span>
+                  <span>Demo (Coming Soon)</span>
+                </a>
+              </span> -->
+              <span class="link-block">
+                <a href="https://huggingface.co/craigwu/proxyv_vicuna_7b_layer12"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <p style="font-size:18px">🤗</p>
+                  </span>
+                  <span>Model</span>
+                </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <div class="column is-3 has-text-centered">
+  <img src="./static/images/interpolate_start.jpg"
+       class="interpolation-image"
+       alt="Interpolate start reference image."/>
+  <p>Start Frame</p>
+</div> -->
+
+
+<section class="section" style="margin-top: -4rem;">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          1. Different from the token reduction studies, we systematically study the computation-level redundancy on vision tokens in decoder-only LMMs and explore ways to progressively reduce it.
+          <br>
+          2. We propose ProxyV, a novel design that introduces proxy tokens to carry out heavy computations, effectively reducing computation while ensuring performance.           
+          <br>
+          3. We extensively validate the effectiveness of ProxyV with different LLMs and show its flexibility by proposing a non-spatial variant that can be directly combined with token reduction methods.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" style="margin-top: -2rem;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Discover Computation-level Redundancy</h2>
+        <div style="display: flex; align-items: flex-start; gap: 30px; margin-top: 2em;">
+        <!-- Left: Image -->
+        <div style="flex: 1; text-align: center;">
+          <img src="./static/proxyv/mask_ratio_revised.png"
+              alt="Interpolate start reference image"
+              style="max-width: 100%; height: auto;" />
+        </div>
+
+        <!-- Right: Justified Text -->
+        <div style="flex: 2; text-align: justify;">
+          <h2 style="font-weight: normal; line-height: 1.6;">
+            How can we reduce the computation cost brought by long vision sequences while always preserving all vision tokens to avoid any possible information loss?
+            <em>Is it necessary to perform all the heavy operations (e.g., vision-to-vision attention and FFNs) on vision tokens within the LLM?</em>
+            We first design explorative studies to investigate the presence of computation redundancy in self-attention operations among vision tokens by measuring the performance on fine-grained tasks when masking the vision-to-vision attentions directly during inference.
+            We observe that <strong>the attention-related computation redundancy on vision tokens does exist in the middle and later layers of LMMs, with varying degrees of redundancy across different LLMs.</strong>
+          </h2>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: center; gap: 20px;">
+        <img src="./static/proxyv/table1.png" alt="Image 1" style="width: 400px;" />
+        <img src="./static/proxyv/table2.png" alt="Image 2" style="width: 400px;" />
+      </div>
+      <div class="content-text" style="text-align: justify;">
+        <em>Can we finetune the model with the vision-to-all attention operations skipped to further reduce the performance gap?</em> We find that <strong>finetuning with the vision-to-all attention skipped mitigates the performance drop,</strong> but the FLOPs is still high. <em>Is it possible to also skip the heavy FFNs or replace them with lightweight alternatives?</em> Through experiments, we observe that after replacing the heavy FFNs with lightweight ones, <strong>the final performance can now be understood as the performance gain from the newly added vision-specific parameters minus the performance drop caused by skipping the original heavy operations on vision tokens.</strong> 
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="margin-top: -2rem;">
+  <div class="container is-max-desktop">
+    <!-- Animation. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">A Better Solution: ProxyV</h2>
+        <div class="content has-text-centered">
+          <img src="./static/proxyv/proxyv.png"
+          class="interpolation-image"
+          alt="Interpolate start reference image."
+          style="width: 80%; height: auto;"/> 
+        </div>
+        <div class="content-text" style="text-align: justify;">
+          <em>Can we have a better design to eliminate performance loss further or even enhance performance while maintaining computational efficiency?</em> The core idea of ProxyV is to employ a small group of proxy vision tokens as substitutes for the original vision tokens in compute-intensive operations. These proxy tokens then guide the updates of the original vision tokens through lightweight modules.
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 30px; margin-top: 2em;">
+        <!-- Left: Image -->
+        <div style="flex: 1; text-align: center;">
+          <img src="./static/proxyv/non_spatial_proxyv.png"
+              alt="Interpolate start reference image"
+              style="max-width: 100%; height: auto;" />
+        </div>
+
+        <!-- Right: Justified Text -->
+        <div style="flex: 2; text-align: justify;">
+          <h2 style="font-weight: normal; line-height: 1.6;">
+            Our goal is to diminish computation-level redundancy, which is theoretically orthogonal to the objective of token reduction methods that focus on removing token-level redundancy. <em>Is it possible to combine ProxyV with these token reduction methods?</em> To remove the spatial constraint of the original ProxyV design, <strong>we also design a non-spatial variant  to remove the requirement of a spatial prior so that this alternative can be flexibly combined with token reduction methods or non-spatial vision features.</strong>
+          </h2>
+        </div>
+      </div>
+
+        <!--/ Re-rendering. -->
+
+      </div>
+    </div>
+    <!--/ Animation. -->
+
+  </div>
+</section>
+
+<section class="section" style="margin-top: -2rem;">
+  <div class="container is-max-desktop">
+
+
+    <!-- Animation. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Results</h2>
+        <div class="content has-text-centered">
+          <img src="./static/proxyv/results.png"
+          class="interpolation-image"
+          alt="Interpolate start reference image."
+          style="width: 60%; height: auto;"/> 
+        </div>
+        <div class="content-text" style="text-align: justify;">
+          We further validate the effectiveness of our ProxyV algorithms with different LLM backbones. The results indicate that applying ProxyV from the middle layers can achieve no performance loss or a small performance gain (100% - 101%) with moderate efficiency improvement. Applying it from the middle and rear part of the LLM achieves notable performance improvement (101% - 102%) with a smaller efficiency gain.
+        </div>
+
+      </div>
+    </div>
+    <!--/ Animation. -->
+
+  </div>
+</section>
+
+<section class="section" style="margin-top: -2rem;">
+  <div class="container is-max-desktop">
+
+
+    <!-- Animation. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Comparison with Token Reduction Methods</h2>
+        <div class="content has-text-centered">
+          <img src="./static/proxyv/table3.png"
+          class="interpolation-image"
+          alt="Interpolate start reference image."
+          style="width: 80%; height: auto;"/> 
+        </div>
+        <div class="content-text" style="text-align: justify;">
+          We also evaluate ProxyV and token-reduction methods on a grounding benchmark RefCOCO and a document parsing task to ensure no vision information loss for all cases even when the images contain very dense visual information or require accurate visual grounding. VisionZip and PyramidDrop achieve
+          nearly no performance drop on selected fine-grained benchmarks but have notable degradation and grounding benchmark and much worse performance on the document parsing task, highlighting the issue of visual information loss inherent to token reduction methods.
+        </div>
+
+      </div>
+    </div>
+    <!--/ Animation. -->
+
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p> 
+            Contact: 
+            <a href="penghao001@e.ntu.edu.sg">penghao001@e.ntu.edu.sg</a><br>
+            This website is adapted from <a
+            href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
