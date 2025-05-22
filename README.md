@@ -1,8 +1,8 @@
 # ProxyV: Streamline Without Sacrifice - Squeeze out Computation Redundancy in LMM
 
-[![Static Badge](https://img.shields.io/badge/proxyv-paper-red)]()
+[![Static Badge](https://img.shields.io/badge/proxyv-paper-red)](https://arxiv.org/abs/2505.15816)
 [![Static Badge](https://img.shields.io/badge/proxyv-project_page-green)](https://penghao-wu.github.io/ProxyV/)
-[![Static Badge](https://img.shields.io/badge/proxyv-model-blue)]()
+[![Static Badge](https://img.shields.io/badge/proxyv-model-blue)](https://huggingface.co/craigwu/proxyv_vicuna_7b_layer12)
 
 ![pipeline](assets/pipeline.png)
 
