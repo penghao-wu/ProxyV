@@ -50,9 +50,11 @@ This project is under the Apache-2.0 license. See [LICENSE](LICENSE) for details
 Please consider citing our paper if you find this project helpful for your research:
 
 ```bibtex
-@article{proxyv,
-
-}
+@article{ProxyV,
+  author    = {Wu, Penghao and Lu, Lewei and Liu, Ziwei},
+  title     = {Streamline Without Sacrifice - Squeeze out Computation Redundancy in LMM},
+  journal={arXiv preprint arXiv:2505.15816},
+  year={2025}}
 ```
 
 ## Acknowledgement <a name="acknowledgement"></a>
